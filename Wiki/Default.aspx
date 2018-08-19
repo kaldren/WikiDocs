@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Wiki.Default" %>
+﻿<%@ Page Language="C#" validateRequest="false" AutoEventWireup="true" enableEventValidation="false" CodeBehind="Default.aspx.cs" Inherits="Wiki.Default" %>
 
 <!DOCTYPE html>
 
@@ -33,14 +33,18 @@
 
         <div>
             <p>Categories: </p>
-            <select class="form-control js-categories" multiple="multiple">
-            </select>
+            <asp:ListBox ID="lbCategories" CssClass="form-control js-categories" SelectionMode="Multiple" runat="server">
+            </asp:ListBox>
         </div>
 
         <div>
             <p>Tags: </p>
-            <select class="form-control js-tags" multiple="multiple">
-            </select>
+            <asp:ListBox ID="lbTags" CssClass="form-control js-tags" SelectionMode="Multiple" runat="server">
+            </asp:ListBox>
+        </div>
+
+        <div>
+            <asp:Button Text="Create" ID="btnCreate" OnClick="btnCreate_Click" runat="server" />
         </div>
     </form>
 
@@ -50,14 +54,14 @@
             minimumInputLength: 1,
             tags: true,
             ajax: {
-                type: 'POST',
+                type: 'GET',
                 url: 'Default.aspx/GetCategories',
                 contentType: 'application/json; charset=utf-8',
                 dataType: 'json',
-                data: function (params) {
-                    var query = JSON.stringify({ search: params.term });
-
-                    return query;
+                data: function (search) {
+                    return {
+                        search: JSON.stringify(search.term)
+                    }
                 },
                 processResults: function (data) {
                     return {
@@ -71,14 +75,14 @@
             minimumInputLength: 1,
             tags: true,
             ajax: {
-                type: 'POST',
-                url: 'Default.aspx/GetTags',
+                type: 'GET',
+                url: 'Default.aspx/GetCategories',
                 contentType: 'application/json; charset=utf-8',
                 dataType: 'json',
-                data: function (params) {
-                    var query = JSON.stringify({ search: params.term });
-
-                    return query;
+                data: function (search) {
+                    return {
+                        search: JSON.stringify(search.term)
+                    }
                 },
                 processResults: function (data) {
                     return {

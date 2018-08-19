@@ -7,7 +7,7 @@ namespace Wiki
 {
     public class Category
     {
-        public string id { get; set; }
-        public string text { get; set; }
+        public string Id { get; set; }
+        public string Title { get; set; }
     }
 }
