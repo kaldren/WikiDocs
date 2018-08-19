@@ -15,34 +15,39 @@ namespace Wiki
 {
     public partial class Default : System.Web.UI.Page
     {
+        public static List<Category> categoriesList;
+        public static List<Tag> tagsList;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            var categories = new List<Category>();
-            var tags = new List<Tag>();
+            //var categories = new List<Category>();
+            //var tags = new List<Tag>();
 
-            var cat1 = new Category();
-            cat1.Id = "1";
-            cat1.Title = "Some Title";
+            //var cat1 = new Category();
+            //cat1.Id = "1";
+            //cat1.Title = "Some Title";
 
-            var cat2 = new Category();
-            cat2.Id = "2";
-            cat2.Title = "Other Title";
+            //var cat2 = new Category();
+            //cat2.Id = "2";
+            //cat2.Title = "Other Title";
 
-            categories.Add(cat1);
-            categories.Add(cat2);
+            //categories.Add(cat1);
+            //categories.Add(cat2);
 
-            var tag1 = new Tag();
-            tag1.Id = "1";
-            tag1.Title = "Some Tag";
+            //var tag1 = new Tag();
+            //tag1.Id = "1";
+            //tag1.Title = "Some Tag";
 
-            var tag2 = new Tag();
-            tag2.Id = "2";
-            tag2.Title = "Other Tag";
+            //var tag2 = new Tag();
+            //tag2.Id = "2";
+            //tag2.Title = "Other Tag";
 
-            tags.Add(tag1);
-            tags.Add(tag2);
+            //tags.Add(tag1);
+            //tags.Add(tag2);
 
-            var wikiEntry = new WikiEntry(txtTitle.Text, txtContent.Text, "John Doe", DateTimeOffset.UtcNow, DateTimeOffset.UtcNow, "John Die", categories, tags);
+            //var wikiEntry = new WikiEntry(txtTitle.Text, txtContent.Text, "John Doe", DateTimeOffset.UtcNow, DateTimeOffset.UtcNow, "John Die", categories, tags);
+
+
         }
 
         [WebMethod]
@@ -52,12 +57,12 @@ namespace Wiki
             XDocument doc = XDocument.Load(@"C:\Users\KDRENSKI\source\repos\Wiki\Wiki\App_Data\Wiki.xml");
 
             var data = from x in doc.Descendants("Categories").Elements()
-                .Where(p => p.Attribute("Title").Value
+                .Where(p => p.Attribute("Text").Value
                 .StartsWith(search))
                        select new
                        {
                            id = x.Attribute("Id").Value,
-                           text = x.Attribute("Title").Value
+                           text = x.Attribute("Text").Value
                        };
 
             JavaScriptSerializer js = new JavaScriptSerializer();
@@ -71,12 +76,12 @@ namespace Wiki
         {
             XDocument doc = XDocument.Load(@"C:\Users\KDRENSKI\source\repos\Wiki\Wiki\App_Data\Wiki.xml");
             var data = from x in doc.Descendants("Tags").Elements()
-                .Where(p => p.Attribute("Title").Value
+                .Where(p => p.Attribute("Text").Value
                 .StartsWith(search))
                        select new
                        {
                            id = x.Attribute("Id").Value,
-                           text = x.Attribute("Title").Value
+                           text = x.Attribute("Text").Value
                        };
 
             JavaScriptSerializer js = new JavaScriptSerializer();
@@ -85,10 +90,25 @@ namespace Wiki
         }
 
         [WebMethod]
-        public static void SaveCategories(string categories)
+        public static List<Category> SaveCategories(string categories)
         {
             JavaScriptSerializer js = new JavaScriptSerializer();
             var data = js.Deserialize<List<Category>>(categories.ToString());
+
+            categoriesList = data;
+
+            return data;
+        }
+
+        [WebMethod]
+        public static List<Tag> SaveTags(string tags)
+        {
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            var data = js.Deserialize<List<Tag>>(tags.ToString());
+
+            tagsList = data;
+
+            return data;
         }
 
         protected void btnCreate_Click(object sender, EventArgs e)
@@ -96,14 +116,14 @@ namespace Wiki
             List<Category> categories = new List<Category>();
             List<Tag> tags = new List<Tag>();
 
-            foreach (var category in lbCategories.Items)
-            {
-                categories.Add(new Category()
-                {
-                    Id = 5.ToString(),
-                    Title = category.ToString()
-                });
-            }
+            //foreach (var category in categoriesList)
+            //{
+            //    categories.Add(new Category()
+            //    {
+            //        Id = 5.ToString(),
+            //        Text = category.ToString()
+            //    });
+            //}
         }
     }
 }

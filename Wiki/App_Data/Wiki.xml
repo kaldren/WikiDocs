@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Wiki>
   <Categories>
-    <Category Id="1" Title="animals"/>
-    <Category Id="2" Title="frogs"/>
-    <Category Id="3" Title="newcategory"/>
-    <Category Id="4" Title="google"/>
+    <Category Id="1" Text="animals"/>
+    <Category Id="2" Text="frogs"/>
+    <Category Id="3" Text="newcategory"/>
+    <Category Id="4" Text="google"/>
   </Categories>
   <Tags>
-    <Tag Id="1" Title="cats"/>
-    <Tag Id="2" Title="dogs"/>
-    <Tag Id="3" Title="newtag"/>
-    <Tag Id="4" Title="microsoft"/>
+    <Tag Id="1" Text="cats"/>
+    <Tag Id="2" Text="dogs"/>
+    <Tag Id="3" Text="newtag"/>
+    <Tag Id="4" Text="microsoft"/>
   </Tags>
   <WikiEntries>
     <WikiEntry Id="b44c57a0-4d5c-40b0-9587-497f6a33c679" CreatedBy="kaloyan@kukui.com" CreatedAt="8/12/2018 11:47:55 AM +00:00" 

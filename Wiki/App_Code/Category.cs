@@ -8,6 +8,6 @@ namespace Wiki.App_Code
     public class Category
     {
         public string Id { get; set; }
-        public string Title { get; set; }
+        public string Text { get; set; }
     }
 }

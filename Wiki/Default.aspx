@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" validateRequest="false" AutoEventWireup="true" enableEventValidation="false" CodeBehind="Default.aspx.cs" Inherits="Wiki.Default" %>
+﻿<%@ Page Language="C#" ValidateRequest="false" AutoEventWireup="true" EnableEventValidation="false" CodeBehind="Default.aspx.cs" Inherits="Wiki.Default" %>
 
 <!DOCTYPE html>
 
@@ -19,6 +19,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <asp:ScriptManager runat="server" />
         <div>
             <div class="row form-group">
                 <label for="txtTitle">Title:</label>
@@ -33,24 +34,54 @@
 
         <div>
             <p>Categories: </p>
-            <asp:ListBox ID="lbCategories" CssClass="form-control js-categories" SelectionMode="Multiple" runat="server">
-            </asp:ListBox>
+            <asp:ListBox ID="lbCategories" CssClass="form-control js-categories" SelectionMode="Multiple" runat="server"></asp:ListBox>
         </div>
 
         <div>
             <p>Tags: </p>
-            <asp:ListBox ID="lbTags" CssClass="form-control js-tags" SelectionMode="Multiple" runat="server">
-            </asp:ListBox>
+            <asp:ListBox ID="lbTags" CssClass="form-control js-tags" SelectionMode="Multiple" runat="server"></asp:ListBox>
         </div>
 
         <div>
-            <asp:Button Text="Create" ID="btnCreate" OnClick="btnCreate_Click" runat="server" />
+            <asp:Button Text="Create" ID="btnCreate" CssClass="js-btncreate" OnClientClick="SaveCategoriesAndTags()" OnClick="btnCreate_Click" runat="server" />
         </div>
         <a href="javascript:void(0)" class="showselection">show</a>
 
     </form>
 
     <script type="text/javascript">
+
+        function SaveCategoriesAndTags() {
+            SaveCategories();
+            SaveTags();
+        }
+
+        function SaveCategories() {
+            var selectData = JSON.stringify($('.js-categories').select2('data'));
+
+            $.ajax({
+                url: 'Default.aspx/SaveCategories',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({ categories: selectData }),
+                success: function (result) {
+                }
+            });
+        }
+
+        function SaveTags() {
+            var selectData = JSON.stringify($('.js-tags').select2('data'));
+
+            $.ajax({
+                url: 'Default.aspx/SaveTags',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({ tags: selectData }),
+                success: function (result) {
+                }
+            });
+        }
+
         $('.js-categories').select2({
             minimumInputLength: 1,
             tags: true,
@@ -87,26 +118,12 @@
                     }
                 },
                 processResults: function (data) {
+
                     return {
                         results: JSON.parse(data.d)
                     };
                 }
             }
-        });
-
-        $(".showselection").click(function () {
-
-            var selectData = JSON.stringify($('.js-categories').select2('data'));
-
-            $.ajax({
-                url: 'Default.aspx/SaveCategories',
-                type: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify({ categories: selectData }),
-                success: function (result) {
-                    console.log(result);
-                }
-            });
         });
     </script>
 </body>
