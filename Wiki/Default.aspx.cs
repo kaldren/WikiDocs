@@ -33,5 +33,21 @@ namespace Wiki
 
             return data;
         }
+
+        [WebMethod]
+        public static IEnumerable<object> GetTags(string search)
+        {
+            XDocument doc = XDocument.Load(@"C:\Users\KDRENSKI\source\repos\Wiki\Wiki\App_Data\Wiki.xml");
+            var data = from x in doc.Descendants("Tags").Elements()
+                .Where(p => p.Attribute("Title").Value
+                .StartsWith(search))
+                       select new
+                       {
+                           id = x.Attribute("Id").Value,
+                           text = x.Attribute("Title").Value
+                       };
+
+            return data;
+        }
     }
 }

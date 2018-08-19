@@ -1,1 +1,4 @@
-﻿.js-categories {width: 500px;}
+﻿.js-categories, 
+.js-tags {
+    width: 500px;
+}

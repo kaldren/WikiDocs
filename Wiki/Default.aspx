@@ -20,7 +20,26 @@
 <body>
     <form id="form1" runat="server">
         <div>
+            <div class="row form-group">
+                <label for="txtTitle">Title:</label>
+                <asp:TextBox ID="txtTitle" runat="server" />
+            </div>
+
+            <div class="row form-group">
+                <label for="txtContent">Content:</label>
+                <asp:TextBox ID="txtContent" TextMode="MultiLine" runat="server" />
+            </div>
+        </div>
+
+        <div>
+            <p>Categories: </p>
             <select class="form-control js-categories" multiple="multiple">
+            </select>
+        </div>
+
+        <div>
+            <p>Tags: </p>
+            <select class="form-control js-tags" multiple="multiple">
             </select>
         </div>
     </form>
@@ -29,6 +48,7 @@
 
         $('.js-categories').select2({
             minimumInputLength: 1,
+            tags: true,
             ajax: {
                 type: 'POST',
                 url: 'Default.aspx/GetCategories',
@@ -40,7 +60,27 @@
                     return query;
                 },
                 processResults: function (data) {
-                    console.log(data.d)
+                    return {
+                        results: data.d
+                    };
+                }
+            }
+        });
+
+        $('.js-tags').select2({
+            minimumInputLength: 1,
+            tags: true,
+            ajax: {
+                type: 'POST',
+                url: 'Default.aspx/GetTags',
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                data: function (params) {
+                    var query = JSON.stringify({ search: params.term });
+
+                    return query;
+                },
+                processResults: function (data) {
                     return {
                         results: data.d
                     };
