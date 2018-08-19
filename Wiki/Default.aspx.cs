@@ -20,34 +20,6 @@ namespace Wiki
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //var categories = new List<Category>();
-            //var tags = new List<Tag>();
-
-            //var cat1 = new Category();
-            //cat1.Id = "1";
-            //cat1.Title = "Some Title";
-
-            //var cat2 = new Category();
-            //cat2.Id = "2";
-            //cat2.Title = "Other Title";
-
-            //categories.Add(cat1);
-            //categories.Add(cat2);
-
-            //var tag1 = new Tag();
-            //tag1.Id = "1";
-            //tag1.Title = "Some Tag";
-
-            //var tag2 = new Tag();
-            //tag2.Id = "2";
-            //tag2.Title = "Other Tag";
-
-            //tags.Add(tag1);
-            //tags.Add(tag2);
-
-            //var wikiEntry = new WikiEntry(txtTitle.Text, txtContent.Text, "John Doe", DateTimeOffset.UtcNow, DateTimeOffset.UtcNow, "John Die", categories, tags);
-
-
         }
 
         [WebMethod]
@@ -113,17 +85,7 @@ namespace Wiki
 
         protected void btnCreate_Click(object sender, EventArgs e)
         {
-            List<Category> categories = new List<Category>();
-            List<Tag> tags = new List<Tag>();
-
-            //foreach (var category in categoriesList)
-            //{
-            //    categories.Add(new Category()
-            //    {
-            //        Id = 5.ToString(),
-            //        Text = category.ToString()
-            //    });
-            //}
+            var wikiEntry = new WikiEntry(txtTitle.Text, txtContent.Text, "John Doe", DateTimeOffset.UtcNow, DateTimeOffset.UtcNow, "John Die", categoriesList, tagsList);
         }
     }
 }

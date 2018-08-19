@@ -96,6 +96,7 @@
                     }
                 },
                 processResults: function (data) {
+                    SaveCategories();
 
                     return {
                         results: JSON.parse(data.d)
@@ -118,6 +119,7 @@
                     }
                 },
                 processResults: function (data) {
+                    SaveTags();
 
                     return {
                         results: JSON.parse(data.d)
