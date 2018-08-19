@@ -13,7 +13,7 @@ using Wiki.App_Code;
 
 namespace Wiki
 {
-    public partial class Default : System.Web.UI.Page
+    public partial class Default2 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -104,5 +104,7 @@ namespace Wiki
                 });
             }
         }
+
+
     }
 }

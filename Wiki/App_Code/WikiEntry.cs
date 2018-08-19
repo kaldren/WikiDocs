@@ -30,16 +30,4 @@ namespace Wiki.App_Code
             Tags = tags;
         }
     }
-
-    public class Category
-    {
-        public string Id { get; set; }
-        public string Title { get; set; }
-    }
-
-    public class Tag
-    {
-        public string Id { get; set; }
-        public string Title { get; set; }
-    }
 }
