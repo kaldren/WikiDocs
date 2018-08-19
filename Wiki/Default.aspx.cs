@@ -85,9 +85,10 @@ namespace Wiki
         }
 
         [WebMethod]
-        public static void SaveCategories(string categoriesArray)
+        public static void SaveCategories(string categories)
         {
-            Console.WriteLine(categoriesArray);
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            var data = js.Deserialize<List<Category>>(categories.ToString());
         }
 
         protected void btnCreate_Click(object sender, EventArgs e)

@@ -46,6 +46,8 @@
         <div>
             <asp:Button Text="Create" ID="btnCreate" OnClick="btnCreate_Click" runat="server" />
         </div>
+        <a href="javascript:void(0)" class="showselection">show</a>
+
     </form>
 
     <script type="text/javascript">
@@ -100,9 +102,7 @@
                 url: 'Default.aspx/SaveCategories',
                 type: 'POST',
                 contentType: 'application/json',
-                data: function () {
-                    categoriesArray: selectData
-                },
+                data: JSON.stringify({ categories: selectData }),
                 success: function (result) {
                     console.log(result);
                 }
