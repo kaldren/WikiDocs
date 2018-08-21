@@ -11,8 +11,18 @@ namespace Wiki.App_Code
         private static string file = @"C:\Users\KDRENSKI\source\repos\Wiki\Wiki\App_Data\Wiki.xml";
         private static XDocument xDoc = XDocument.Load(file);
 
+        private static XElement XRoot { get; set; } = xDoc.Root;
+
+        private static XElement XCategory { get; set; } = xDoc.Root.Element("Categories");
+        private static XElement XTag { get; set; } = xDoc.Root.Element("Tags");
+        private static XElement XWikiEntries { get; set; } = xDoc.Root.Element("WikiEntries");
+
+
         public static IEnumerable<XElement> XCategories { get; set; } = xDoc.Root.Element("Categories").Elements("Category");
         public static IEnumerable<XElement> XTags { get; private set; } = xDoc.Root.Element("Tags").Elements("Tag");
+        public static IEnumerable<XElement> XWikiEntry { get; private set; } = xDoc.Root.Element("WikiEntries").Elements("WikiEntry");
+
+
 
         private Model()
         {
@@ -34,7 +44,7 @@ namespace Wiki.App_Code
                     // Generate new Category
                     categoryId = (Convert.ToInt32(XCategories.Last().Attribute("Id").Value) + 1).ToString();
 
-                    xDoc.Root.Element("Categories").Add(
+                    XCategory.Add(
                         new XElement("Category", 
                             new XAttribute("Id", categoryId), 
                             new XAttribute("Text", item.Text))
@@ -55,7 +65,7 @@ namespace Wiki.App_Code
                 {
                     // Generate new Tag
                     tagId = (Convert.ToInt32(XTags.Last().Attribute("Id").Value) + 1).ToString();
-                    xDoc.Root.Element("Tags").Add
+                    XTag.Add
                             (
                                 new XElement("Tag", 
                                     new XAttribute("Id", tagId),
@@ -77,15 +87,13 @@ namespace Wiki.App_Code
                         new XElement("Content", new XCData(entry.Content))
                     );
 
-            xDoc.Root.Element("WikiEntries").Add(wikiEntry);
+            XWikiEntries.Add(wikiEntry);
             xDoc.Save(file);
         }
 
         public static void DeleteEntry(string id)
         {
-            var entry = xDoc.Root.Element("WikiEntries")
-                                 .Elements("WikiEntry")
-                                 .Where(e => e.Attribute("Id").Value == id).FirstOrDefault();
+            var entry = XWikiEntry.Where(e => e.Attribute("Id").Value == id).FirstOrDefault();
 
             if (entry == null)
             {
