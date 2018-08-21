@@ -5,9 +5,9 @@ using System.Web;
 
 namespace Wiki.App_Code
 {
-    public class WikiEntry
+    public class WikiEntry : BaseEntry
     {
-        public string Id { get; private set; }
+        public string Id { get; private set; } = Guid.NewGuid().ToString();
         public string Title { get; private set; }
         public string Content { get; private set; }
         public string CreatedBy { get; private set; }
@@ -16,9 +16,7 @@ namespace Wiki.App_Code
         public string UpdatedBy { get; private set; }
         public List<Category> Categories { get; private set; }
         public List<Tag> Tags { get; private set; }
-
-        public WikiEntry(string title, string content, string createdby,
-            DateTimeOffset createdat, DateTimeOffset updatedat, string updatedby, List<Category> categories, List<Tag> tags)
+        public WikiEntry(string title, string content, string createdby, DateTimeOffset createdat, DateTimeOffset updatedat, string updatedby, List<Category> categories, List<Tag> tags)
         {
             Title = title;
             Content = content;

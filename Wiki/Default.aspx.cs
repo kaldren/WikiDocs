@@ -86,6 +86,9 @@ namespace Wiki
         protected void btnCreate_Click(object sender, EventArgs e)
         {
             var wikiEntry = new WikiEntry(txtTitle.Text, txtContent.Text, "John Doe", DateTimeOffset.UtcNow, DateTimeOffset.UtcNow, "John Die", categoriesList, tagsList);
+            WikiDAL wikiDal = new WikiDAL(@"C:\Users\KDRENSKI\source\repos\Wiki\Wiki\App_Data\Wiki.xml");
+            wikiDal.Add(wikiEntry);
+            wikiDal.Save();
         }
     }
 }

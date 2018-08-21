@@ -93,10 +93,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Code\BaseEntry.cs" />
+    <Compile Include="App_Code\EntityStatus.cs" />
+    <Compile Include="App_Code\Model.cs" />
     <Compile Include="App_Code\Category.cs" />
-    <Compile Include="App_Code\Tag.cs" />
+    <Compile Include="App_Code\WikiDAL.cs" />
     <Compile Include="App_Code\WikiEntry.cs" />
-    <Content Include="App_Code\WikiDAL.cs" />
+    <Compile Include="App_Code\Tag.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
