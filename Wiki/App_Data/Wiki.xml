@@ -5,6 +5,7 @@
     <Category Id="2" Text="frogs" />
     <Category Id="3" Text="newcategory" />
     <Category Id="4" Text="google" />
+    <Category Id="5" Text="lamborghini" />
   </Categories>
   <Tags>
     <Tag Id="1" Text="cats" />
@@ -13,12 +14,8 @@
     <Tag Id="4" Text="microsoft" />
   </Tags>
   <WikiEntries>
-    <WikiEntry Id="b44c57a0-4d5c-40b0-9587-497f6a33c679" CreatedBy="kaloyan@kukui.com" CreatedAt="8/12/2018 11:47:55 AM +00:00" UpdatedBy="kaloyan@kukui.com" UpdatedAt="8/12/2018 11:47:55 AM +00:00" CategoryIds="1,2,3,4" TagIds="1,2,3,4">
-      <Title>This is my title</Title>
-      <Content><![CDATA[microsoft]]></Content>
-    </WikiEntry>
-    <WikiEntry Id="bcd29dff-db30-45ed-9f7f-d9d616fb0ad0" CreatedBy="kaloyan@kukui.com" CreatedAt="8/21/2018 7:01:10 PM +00:00" UpdatedBy="kaloyan@kukui.com" UpdatedAt="8/21/2018 7:01:10 PM +00:00" CategoryIds="1,cats,dogs" TagIds="4,3">
-      <Title>This is my title</Title>
+    <WikiEntry Id="c45f6cd9-fdb1-4a29-a58c-c0caf8116983" CreatedBy="kaloyan@kukui.com" CreatedAt="8/21/2018 8:02:44 PM +00:00" UpdatedBy="kaloyan@kukui.com" UpdatedAt="8/21/2018 8:02:44 PM +00:00" CategoryIds="1,lamborghini" TagIds="1">
+      <Title>test</Title>
       <Content><![CDATA[test]]></Content>
     </WikiEntry>
   </WikiEntries>

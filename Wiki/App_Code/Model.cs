@@ -17,6 +17,43 @@ namespace Wiki.App_Code
 
         public static void CreateEntry(WikiEntry entry)
         {
+            foreach (var item in entry.Categories)
+            {
+                string categoryId = "";
+
+                if (xDoc.Root.Element("Categories").Elements("Category").Any(c => c.Attribute("Text").Value == item.Text))
+                {
+                    continue;
+                }
+                else
+                {
+                    // Generate new category id
+                    categoryId = (Convert.ToInt32(xDoc.Root.Element("Categories").Elements("Category").Last().Attribute("Id").Value) + 1).ToString();
+
+                    xDoc.Root.Element("Categories").Add(
+                            new XElement("Category", new XAttribute("Id", categoryId),
+                            new XAttribute("Text", item.Text)));
+                }
+            }
+
+            foreach (var item in entry.Tags)
+            {
+                string tagId = "";
+
+                if (xDoc.Root.Element("Tags").Elements("Tag").Any(c => c.Attribute("Text").Value == item.Text))
+                {
+                    continue;
+                }
+                else
+                {
+                    // Generate new tag id
+                    tagId = (Convert.ToInt32(xDoc.Root.Element("Tags").Elements("Tag").Last().Attribute("Id").Value) + 1).ToString();
+                    xDoc.Root.Element("Tags").Add(
+                            new XElement("Tag", new XAttribute("Id", Guid.NewGuid().ToString()),
+                            new XAttribute("Text", item.Text)));
+                }
+            }
+
             XElement wikiEntry =
                     new XElement("WikiEntry",
                             new XAttribute("Id", Guid.NewGuid()),
