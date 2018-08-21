@@ -68,8 +68,23 @@ namespace Wiki.App_Code
                         new XElement("Title", entry.Title),
                         new XElement("Content", new XCData(entry.Content))
                     );
+
             xDoc.Root.Element("WikiEntries").Add(wikiEntry);
             xDoc.Save(file);
+        }
+
+        public static void DeleteEntry(string id)
+        {
+            var entry = xDoc.Root.Element("WikiEntries").Elements("WikiEntry").Where(e => e.Attribute("Id").Value == id).FirstOrDefault();
+
+            if (entry == null)
+            {
+                return;
+            }
+            else
+            {
+                entry.Remove();
+            }
         }
     }
 }

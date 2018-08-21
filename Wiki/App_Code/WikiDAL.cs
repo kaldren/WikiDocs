@@ -41,11 +41,11 @@ namespace Wiki.App_Code
                 }
                 else if (entry.Status == EntityStatus.Updated)
                 {
-
+                  //Model.UpdateEntry(entry);   
                 }
                 else if (entry.Status == EntityStatus.Deleted)
                 {
-
+                    Model.DeleteEntry(entry.Id);
                 }
             }
         }
