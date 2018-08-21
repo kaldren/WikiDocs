@@ -11,6 +11,9 @@ namespace Wiki.App_Code
         private static string file = @"C:\Users\KDRENSKI\source\repos\Wiki\Wiki\App_Data\Wiki.xml";
         private static XDocument xDoc = XDocument.Load(file);
 
+        public static IEnumerable<XElement> XCategories { get; set; } = xDoc.Root.Element("Categories").Elements("Category");
+        public static IEnumerable<XElement> XTags { get; private set; } = xDoc.Root.Element("Tags").Elements("Tag");
+
         private Model()
         {
         }
@@ -22,14 +25,14 @@ namespace Wiki.App_Code
                 string categoryId = "";
 
                 // Category exists
-                if (xDoc.Root.Element("Categories").Elements("Category").Any(c => c.Attribute("Text").Value == item.Text))
+                if (XCategories.Any(c => c.Attribute("Text").Value == item.Text))
                 {
                     continue;
                 }
                 else
                 {
                     // Generate new Category
-                    categoryId = (Convert.ToInt32(xDoc.Root.Element("Categories").Elements("Category").Last().Attribute("Id").Value) + 1).ToString();
+                    categoryId = (Convert.ToInt32(XCategories.Last().Attribute("Id").Value) + 1).ToString();
 
                     xDoc.Root.Element("Categories").Add(
                         new XElement("Category", 
@@ -44,14 +47,14 @@ namespace Wiki.App_Code
                 string tagId = "";
 
                 // Tag exists
-                if (xDoc.Root.Element("Tags").Elements("Tag").Any(c => c.Attribute("Text").Value == item.Text))
+                if (XTags.Any(c => c.Attribute("Text").Value == item.Text))
                 {
                     continue;
                 }
                 else
                 {
                     // Generate new Tag
-                    tagId = (Convert.ToInt32(xDoc.Root.Element("Tags").Elements("Tag").Last().Attribute("Id").Value) + 1).ToString();
+                    tagId = (Convert.ToInt32(XTags.Last().Attribute("Id").Value) + 1).ToString();
                     xDoc.Root.Element("Tags").Add
                             (
                                 new XElement("Tag", 
