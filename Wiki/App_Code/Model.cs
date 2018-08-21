@@ -32,8 +32,10 @@ namespace Wiki.App_Code
                     categoryId = (Convert.ToInt32(xDoc.Root.Element("Categories").Elements("Category").Last().Attribute("Id").Value) + 1).ToString();
 
                     xDoc.Root.Element("Categories").Add(
-                            new XElement("Category", new XAttribute("Id", categoryId),
-                            new XAttribute("Text", item.Text)));
+                        new XElement("Category", 
+                            new XAttribute("Id", categoryId), 
+                            new XAttribute("Text", item.Text))
+                        );
                 }
             }
 
@@ -50,9 +52,12 @@ namespace Wiki.App_Code
                 {
                     // Generate new Tag
                     tagId = (Convert.ToInt32(xDoc.Root.Element("Tags").Elements("Tag").Last().Attribute("Id").Value) + 1).ToString();
-                    xDoc.Root.Element("Tags").Add(
-                            new XElement("Tag", new XAttribute("Id", tagId),
-                            new XAttribute("Text", item.Text)));
+                    xDoc.Root.Element("Tags").Add
+                            (
+                                new XElement("Tag", 
+                                    new XAttribute("Id", tagId),
+                                    new XAttribute("Text", item.Text))
+                            );
                 }
             }
 
@@ -75,7 +80,9 @@ namespace Wiki.App_Code
 
         public static void DeleteEntry(string id)
         {
-            var entry = xDoc.Root.Element("WikiEntries").Elements("WikiEntry").Where(e => e.Attribute("Id").Value == id).FirstOrDefault();
+            var entry = xDoc.Root.Element("WikiEntries")
+                                 .Elements("WikiEntry")
+                                 .Where(e => e.Attribute("Id").Value == id).FirstOrDefault();
 
             if (entry == null)
             {
