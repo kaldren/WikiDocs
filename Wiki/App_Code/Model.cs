@@ -21,13 +21,14 @@ namespace Wiki.App_Code
             {
                 string categoryId = "";
 
+                // Category exists
                 if (xDoc.Root.Element("Categories").Elements("Category").Any(c => c.Attribute("Text").Value == item.Text))
                 {
                     continue;
                 }
                 else
                 {
-                    // Generate new category id
+                    // Generate new Category
                     categoryId = (Convert.ToInt32(xDoc.Root.Element("Categories").Elements("Category").Last().Attribute("Id").Value) + 1).ToString();
 
                     xDoc.Root.Element("Categories").Add(
@@ -40,16 +41,17 @@ namespace Wiki.App_Code
             {
                 string tagId = "";
 
+                // Tag exists
                 if (xDoc.Root.Element("Tags").Elements("Tag").Any(c => c.Attribute("Text").Value == item.Text))
                 {
                     continue;
                 }
                 else
                 {
-                    // Generate new tag id
+                    // Generate new Tag
                     tagId = (Convert.ToInt32(xDoc.Root.Element("Tags").Elements("Tag").Last().Attribute("Id").Value) + 1).ToString();
                     xDoc.Root.Element("Tags").Add(
-                            new XElement("Tag", new XAttribute("Id", Guid.NewGuid().ToString()),
+                            new XElement("Tag", new XAttribute("Id", tagId),
                             new XAttribute("Text", item.Text)));
                 }
             }
