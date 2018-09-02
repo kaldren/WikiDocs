@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Wiki>
+  <Categories>
+    <Category Id="1" Text="animals" />
+    <Category Id="2" Text="frogs" />
+    <Category Id="3" Text="newcategory" />
+    <Category Id="4" Text="google" />
+    <Category Id="5" Text="lamborghini" />
+    <Category Id="6" Text="cats" />
+    <Category Id="7" Text="dogs" />
+  </Categories>
+  <Tags>
+    <Tag Id="1" Text="cats" />
+    <Tag Id="2" Text="dogs" />
+    <Tag Id="3" Text="newtag" />
+    <Tag Id="4" Text="microsoft" />
+    <Tag Id="5" Text="test" />
+  </Tags>
+  <WikiEntries>
+    <WikiEntry Id="c45f6cd9-fdb1-4a29-a58c-c0caf8116983" CreatedBy="kaloyan@kukui.com" CreatedAt="8/21/2018 8:02:44 PM +00:00" UpdatedBy="kaloyan@kukui.com" UpdatedAt="8/21/2018 8:02:44 PM +00:00" CategoryIds="1,lamborghini" TagIds="1">
+      <Title>test</Title>
+      <Content><![CDATA[test]]></Content>
+    </WikiEntry>
+    <WikiEntry Id="667129a8-75de-4c09-87e0-4c90fee60e44" CreatedBy="kaloyan@kukui.com" CreatedAt="8/21/2018 8:41:54 PM +00:00" UpdatedBy="kaloyan@kukui.com" UpdatedAt="8/21/2018 8:41:54 PM +00:00" CategoryIds="1,cats,dogs" TagIds="test,4,1">
+      <Title>test</Title>
+      <Content><![CDATA[testvam]]></Content>
+    </WikiEntry>
+  </WikiEntries>
+</Wiki>
