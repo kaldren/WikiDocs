@@ -22,11 +22,13 @@ namespace TestSelectLib
         public static string GetCategories()
         {
             XDocument doc = XDocument.Load(@"C:\Users\KDRENSKI\source\repos\Wiki\TestSelectLib\Data.xml");
-            var data = from x in doc.Root.Descendants("Category")
+            var data = from x in doc.Root.Descendants("WikiEntry")
+                       .Where(p => p.Element("Id").Value == "eb14b6f7-94dd-480a-8d73-6f0be730b058")
+                       from y in x.Descendants("Category")
                        select new
                        {
-                           id = x.Attribute("Id").Value,
-                           text = x.Attribute("Text").Value
+                           id = y.Attribute("Id").Value,
+                           text = y.Attribute("Text").Value
                        };
 
             JavaScriptSerializer js = new JavaScriptSerializer();

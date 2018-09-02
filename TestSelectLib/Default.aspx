@@ -74,10 +74,9 @@
                         var jsonData = $.parseJSON(data.d);
                         var jsonArrayIndexes = new Array();
 
-                        $(jsonData).each(function (index) {
+                        $.each(jsonData, function (index) {
                             jsonArrayIndexes.push(index);
                         });
-
 
                         $('.js-categories').val(jsonArrayIndexes).trigger("change");
                     }
